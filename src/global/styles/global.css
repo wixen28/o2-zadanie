@@ -1,0 +1,18 @@
+/* @import url('https://fonts.googleapis.com/css2?family=On+Air&display=swap'); */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100vh;
+  margin: 0;
+  /* font-family: ''; On Air Var font is custom for o2 and unfortunatelly cant find it anywhere */
+}
+
