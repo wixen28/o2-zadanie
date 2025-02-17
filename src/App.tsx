@@ -1,10 +1,9 @@
 import { useForm, Controller } from "react-hook-form"
 
 import { emailPattern } from "./global/utils/regex-patterns"
-import { TextInputState, TextInputBodySize, TextInputLabelSize } from "./global/components/TextInput"
-import useMockMutation from "./global/components/hooks/useMockApi"
-
-import TextInput from "./global/components/TextInput"
+import { TextInputState, TextInputBodySize, TextInputLabelSize } from "./global/components/textInput/TextInput"
+import useMockMutation from "./hooks/useMockApi"
+import TextInput from "./global/components/textInput/TextInput"
 
 const App = () => {
   const { handleSubmit, control, formState: { errors } } = useForm()  
@@ -13,6 +12,9 @@ const App = () => {
   const onSubmit = async (data: any) => {
     await mockMutation(data)
   }
+
+  //update error, its not always red
+  //add testing
 
   return (
     <div className='flex flex-col justify-start items-center h-screen'>
@@ -81,7 +83,7 @@ const App = () => {
             >
               Submit
             </button>
-            { error && <p className='text-o2-content-onNeutral-danger text-xs  text-o2-surface-danger m-auto'>{error}</p> }
+            { error && <p className='text-o2-content-onNeutral-danger text-xs m-auto'>{error}</p> }
           </form>
         </div>
       </div>

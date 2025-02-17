@@ -52,10 +52,6 @@ const TextInput = ({
 
   const [inputState, setInputState] = useState<TextInputState>(state)
 
-  useEffect(() => {
-    setInputState(state)
-  }, [state])
-
   //states
   const getStateClasses = () => {
     switch (inputState) {
@@ -92,13 +88,17 @@ const TextInput = ({
     }
   }
 
-  const handleFocus = () => {
-    setInputState(TextInputState.FOCUS)
+  const handleBlur = () => {
+    if (state === TextInputState.ERROR) {
+      setInputState(TextInputState.ERROR)
+    } else {
+      setInputState(TextInputState.ENABLED)
+    }
   }
 
-  const handleBlur = () => {
-    setInputState(TextInputState.ENABLED)
-  }
+  useEffect(() => {
+    setInputState(state)
+  }, [state])
 
   return (
     <div className='flex flex-col'>
@@ -113,10 +113,11 @@ const TextInput = ({
       )}
       <input 
         type={type}
+        id={id} 
         placeholder={ inputState === TextInputState.FOCUS ? "" : placeholder}
         required={required}
         className={`w-[300px] md:w-[400px] h-[48px] mt-[8px] rounded-[12px] border-[1px] outline-none ${getStateClasses()} ${getBodySizeClasses()} ${className}`}
-        onFocus={handleFocus}
+        onFocus={() => setInputState(TextInputState.FOCUS)}
         onBlur={handleBlur}
         value={value || ""}
         onChange={onChange}         
