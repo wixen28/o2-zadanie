@@ -13,9 +13,6 @@ const App = () => {
     await mockMutation(data)
   }
 
-  //update error, its not always red
-  //add testing
-
   return (
     <div className='flex flex-col justify-start items-center h-screen'>
       <div className='flex flex-col'>
